@@ -1,26 +1,12 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer: 
+" Author:
+"       Genki Kondo
+"
+"       Based on Amir Salihefendic's configuration with additional
+"       shortcuts and NERDTree + Eclim support. 
+"
 "       Amir Salihefendic
 "       http://amix.dk - amix@amix.dk
-"
-" Version: 
-"       5.0 - 29/05/12 15:43:36
-"
-" Blog_post: 
-"       http://amix.dk/blog/post/19691#The-ultimate-Vim-configuration-on-Github
-"
-" Awesome_version:
-"       Get this config, nice color schemes and lots of plugins!
-"
-"       Install the awesome version from:
-"
-"           https://github.com/amix/vimrc
-"
-" Syntax_highlighted:
-"       http://amix.dk/vim/vimrc.html
-"
-" Raw_version: 
-"       http://amix.dk/vim/vimrc.txt
 "
 " Sections:
 "    -> General
@@ -34,47 +20,34 @@
 "    -> Editing mappings
 "    -> vimgrep searching and cope displaying
 "    -> Spell checking
+"    -> NERDTree
+"    -> Eclim
 "    -> Misc
 "    -> Helper functions
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-execute pathogen#infect()
-
-nmap NN <C-W>n:e 
-nmap MM <C-W>v:e 
-nmap KK <C-W>k
-nmap JJ <C-W>j
-nmap LL <C-W>l
-nmap HH <C-W>h
-nmap QQ :qall!<CR>
-nmap qq :q!<CR>
-nmap = 5<C-W>+
-nmap - 5<C-W>-
-imap <C-d> <C-[>diwi
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => NERDTree
+" => Vundle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set NERDTree toggle key
-nmap <F3> :NERDTreeToggle<CR>
+set nocompatible
+filetype off
 
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Eclim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:EclimCompletionMethod = 'omnifunc'
-nmap <C-J>i :JavaImport<CR>
-nmap <C-J>o :JavaImportOrganize<CR>
-nmap <C-J>h :JavaHierarchy<CR>
-nmap <C-J>c :JavaCallHierarchy<CR>
-nmap <C-J>y :JavaFormat<CR>
-nmap <C-]> :JavaSearchContext<CR>
-nmap <C-J>v :Validate<CR>
-nmap <C-L> :LocateFile
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
 
-command -nargs=* LF LocateFile <args>
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'Valloric/YouCompleteMe'
+
+" all Plugins must be added before the following line
+call vundle#end()
+filetype plugin indent on
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -95,8 +68,6 @@ set autoread
 let mapleader = ","
 let g:mapleader = ","
 
-" Fast saving
-nmap <leader>w :w!<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -182,6 +153,7 @@ set ffs=unix,dos,mac
 set colorcolumn=101
 highlight ColorColumn ctermbg=DarkGrey
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -231,16 +203,38 @@ map k gk
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 map <space> /
-map <c-space> ?
+map <C-space> ?
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
 
-" Smart way to move between windows
+" Easier ways to move between windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+nmap KK <C-W>k
+nmap JJ <C-W>j
+nmap LL <C-W>l
+nmap HH <C-W>h
+
+" Open in horizontal split
+nmap NN <C-W>n:e 
+
+" Open in vertical split
+nmap MM <C-W>v:e 
+
+" Fast quit
+nmap QQ :qall!<CR>
+nmap qq :q!<CR>
+
+" Fast save
+nmap ww :w!<CR>
+nmap <leader>w :w!<cr>
+
+" Resize active viewport
+nmap = 5<C-W>+
+nmap - 5<C-W>-
 
 " Close the current buffer
 map <leader>bd :Bclose<cr>
@@ -362,6 +356,31 @@ map <leader>s? z=
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => NERDTree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set NERDTree toggle key
+nmap <F3> :NERDTreeToggle<CR>
+
+map <leader>f :NERDTreeFind<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Eclim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:EclimCompletionMethod = 'omnifunc'
+nmap <C-J>i :JavaImport<CR>
+nmap <C-J>o :JavaImportOrganize<CR>
+nmap <C-J>h :JavaHierarchy<CR>
+nmap <C-J>c :JavaCallHierarchy<CR>
+nmap <C-J>y :JavaFormat<CR>
+nmap <C-]> :JavaSearchContext<CR>
+nmap <C-J>v :Validate<CR>
+nmap <C-L> :LocateFile<CR>
+
+command -nargs=* LF LocateFile <args>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remove the Windows ^M - when the encodings gets messed up
@@ -372,7 +391,6 @@ map <leader>q :e ~/buffer<cr>
 
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
