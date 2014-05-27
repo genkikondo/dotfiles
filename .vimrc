@@ -34,18 +34,19 @@
 set nocompatible
 filetype off
 
-" set the runtime path to include Vundle and initialize
+" Set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" let Vundle manage Vundle, required
+" Let Vundle manage itself
 Plugin 'gmarik/Vundle.vim'
 
+" Plugins
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Valloric/YouCompleteMe'
 
-" all Plugins must be added before the following line
+" Required. All Plugins must be added before the following line
 call vundle#end()
 filetype plugin indent on
 
