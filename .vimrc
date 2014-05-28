@@ -21,6 +21,7 @@
 "    -> vimgrep searching and cope displaying
 "    -> Spell checking
 "    -> NERDTree
+"    -> CtrlP
 "    -> Eclim
 "    -> Misc
 "    -> Helper functions
@@ -45,6 +46,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'kien/ctrlp.vim'
 
 " Required. All Plugins must be added before the following line
 call vundle#end()
@@ -66,8 +68,11 @@ set autoread
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
+let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
+
+" Full mouse support
+set mouse=a
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -79,8 +84,9 @@ set so=7
 " Default to line numbers on
 set nu
 
-" Turn on the WiLd menu
+" Turn on the WiLd menu - command line completion
 set wildmenu
+set wildmode=longest:list,full
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
@@ -202,9 +208,8 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 map j gj
 map k gk
 
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <C-space> ?
+map <C-a> <Home>
+map <C-e> <End>
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
@@ -230,7 +235,6 @@ nmap QQ :qall!<CR>
 nmap qq :q!<CR>
 
 " Fast save
-nmap ww :w!<CR>
 nmap <leader>w :w!<cr>
 
 " Resize active viewport
@@ -362,7 +366,14 @@ map <leader>s? z=
 " Set NERDTree toggle key
 nmap <F3> :NERDTreeToggle<CR>
 
+" Finds current buffer in NERDTree
 map <leader>f :NERDTreeFind<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => CtrlP
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>o :CtrlP .<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -376,7 +387,7 @@ nmap <C-J>c :JavaCallHierarchy<CR>
 nmap <C-J>y :JavaFormat<CR>
 nmap <C-]> :JavaSearchContext<CR>
 nmap <C-J>v :Validate<CR>
-nmap <C-L> :LocateFile<CR>
+nmap <leader>l :LocateFile<CR>
 
 command -nargs=* LF LocateFile <args>
 
