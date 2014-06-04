@@ -9,6 +9,7 @@
 "       http://amix.dk - amix@amix.dk
 "
 " Sections:
+"    -> Vundle
 "    -> General
 "    -> VIM user interface
 "    -> Colors and Fonts
