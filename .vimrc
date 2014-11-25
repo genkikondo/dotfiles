@@ -1,31 +1,34 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Author:
-"       Genki Kondo
+"   Genki Kondo
 "
-"       Based on Amir Salihefendic's configuration with additional
-"       shortcuts and NERDTree + Eclim support. 
+"   Based on Amir Salihefendic's configuration with additional
+"   shortcuts and NERDTree + Eclim support. 
 "
-"       Amir Salihefendic
-"       http://amix.dk - amix@amix.dk
+"   Amir Salihefendic
+"   http://amix.dk - amix@amix.dk
 "
 " Sections:
-"    -> Vundle
-"    -> General
-"    -> VIM user interface
-"    -> Colors and Fonts
-"    -> Files and backups
-"    -> Text, tab and indent related
-"    -> Visual mode related
-"    -> Moving around, tabs and buffers
-"    -> Status line
-"    -> Editing mappings
-"    -> vimgrep searching and cope displaying
-"    -> Spell checking
-"    -> NERDTree
-"    -> CtrlP
-"    -> Eclim
-"    -> Misc
-"    -> Helper functions
+"   -> Vundle
+"   -> General
+"   -> VIM user interface
+"   -> Colors and Fonts
+"   -> Files and backups
+"   -> Text, tab and indent related
+"   -> Visual mode related
+"   -> Moving around, tabs and buffers
+"   -> Status line
+"   -> Editing mappings
+"   -> vimgrep searching and cope displaying
+"   -> Spell checking
+"   -> NERDTree
+"   -> CtrlP
+"   -> Eclim
+"   -> Misc
+"   -> Helper functions
+"
+" Instructions:
+"   Open vim, then :BundleInstall
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -44,9 +47,10 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Plugins
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
 Plugin 'kien/ctrlp.vim'
 
 " Required. All Plugins must be added before the following line
@@ -140,8 +144,9 @@ set tm=500
 " Enable syntax highlighting
 syntax enable
 
-colorscheme desert
 set background=dark
+let g:solarized_termcolors = 256
+colorscheme solarized
 
 " Set extra options when running in GUI mode
 if has("gui_running")
