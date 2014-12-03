@@ -52,6 +52,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 " Plugin 'Valloric/YouCompleteMe'
 Plugin 'kien/ctrlp.vim'
+Plugin 'derekwyatt/vim-scala'
 
 " Required. All Plugins must be added before the following line
 call vundle#end()
