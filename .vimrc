@@ -53,6 +53,7 @@ Plugin 'scrooloose/nerdcommenter'
 " Plugin 'Valloric/YouCompleteMe'
 Plugin 'kien/ctrlp.vim'
 Plugin 'derekwyatt/vim-scala'
+Plugin 'mustache/vim-mustache-handlebars'
 
 " Required. All Plugins must be added before the following line
 call vundle#end()
