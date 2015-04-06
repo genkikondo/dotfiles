@@ -411,6 +411,14 @@ map <leader>q :e ~/buffer<cr>
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
+" Compatibility with tmux
+if &term =~ '^screen'
+  " tmux will send xterm-style keys when its xterm-keys option is on
+  execute "set <xUp>=\e[1;*A"
+  execute "set <xDown>=\e[1;*B"
+  execute "set <xRight>=\e[1;*C"
+  execute "set <xLeft>=\e[1;*D"
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
