@@ -1,0 +1,30 @@
+##
+# See http://www.shellperson.net/using-sudo-with-an-alias/
+alias sudo='sudo '
+
+## Search for files and directories
+alias ff='find . -type f -iname'
+alias fd='find . -type d -iname'
+# ag
+# ag -G 'filenameRegex' 'contentRegex'
+
+## Git
+gpushFn() {
+  branch_name=$(git rev-parse --abbrev-ref HEAD)
+  echo "git push origin $branch_name"
+  git push origin $branch_name
+}
+gpullFn() {
+  branch_name=$(git rev-parse --abbrev-ref HEAD)
+  git fetch origin $branch_name:refs/remotes/origin/$branch_name
+  git merge origin/$branch_name
+}
+alias gpush=gpushFn
+alias gpull=gpullFn
+alias glog='git log'
+alias gllog='git log origin/master..HEAD'  # local commit log
+alias gg='git grep -i'
+alias gf='git ls-files | grep -i'
+alias gs='git status -sb'
+alias gm='git commit -m'
+alias gc='git checkout'
