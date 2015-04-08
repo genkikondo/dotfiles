@@ -1,3 +1,23 @@
+## Window management
+# PREFIX + c  # new window
+# PREFIX + ,  # rename window
+# PREFIX + w  # select window
+#
+## Pane management
+# PREFIX + |  # split window vertically
+# PREFIX + -  # split window horizontally
+# PREFIX + {h, j, k, l}  # move to pane
+#
+## Copy and paste
+## Note: use VI commands for the most part
+# PREFIX + [  # enter copy mode
+# /  # search from top
+# ?  # search from bottom
+# 0 Y  # go to start of line, and copy until end of line
+# v  # start selection
+# V  # toggle column-wise selection
+##
+
 # use UTF8
 set -g utf8
 set-window-option -g utf8 on
