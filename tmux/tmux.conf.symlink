@@ -49,16 +49,27 @@ set-option -g message-fg brightred #orange
 set-option -g default-command "reattach-to-user-namespace -l zsh"
 set-window-option -g automatic-rename on
 
+# prefix + Escape starts copy mode
+bind Escape copy-mode
+
 # use vim keybindings in copy mode
 setw -g mode-keys vi
 
 # setup 'v' to begin selection as in Vim
 bind-key -t vi-copy v begin-selection
+
+# setup 'y' to yank as in Vim
 bind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"
 
-# update default binding of 'Enter' to also use copy-pipe
+# update default binding of 'Enter' to use copy-pipe
 unbind -t vi-copy Enter
 bind-key -t vi-copy Enter copy-pipe "reattach-to-user-namespace pbcopy"
+
+# setup 'Y' to yank to end of line
+bind-key -t vi-copy Y copy-end-of-line "reattach-to-user-namespace pbcopy"
+
+# set 'V' to change between line- and column-wise selection
+bind -t vi-copy V rectangle-toggle
 
 bind y run 'tmux save-buffer - | reattach-to-user-namespace pbcopy '
 bind C-y run 'tmux save-buffer - | reattach-to-user-namespace pbcopy '
@@ -70,7 +81,7 @@ set-option -g status on                # turn the status bar on
 set -g status-utf8 on                  # set utf-8 for the status bar
 set -g status-interval 5               # set update frequencey (default 15 seconds)
 set -g status-justify centre           # center window list for clarity
-# set-option -g status-position top    # position the status bar at top of screen
+set-option -g status-position top    # position the status bar at top of screen
 
 # visual notification of activity in other windows
 setw -g monitor-activity on
