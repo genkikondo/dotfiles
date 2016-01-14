@@ -1,9 +1,9 @@
 ##
 # See http://www.shellperson.net/using-sudo-with-an-alias/
-alias sudo='sudo '
+alias sudo="sudo "
 
 ## Search for files and directories
-alias ff='find . -type f -iname'
+alias ff="find . -type f -iname"
 alias fd='find . -type d -iname'
 # ag
 # ag -G 'filenameRegex' 'contentRegex'
@@ -21,10 +21,27 @@ gpullFn() {
 }
 alias gpush=gpushFn
 alias gpull=gpullFn
-alias glog='git log'
-alias gllog='git log origin/master..HEAD'  # local commit log
-alias gg='git grep -i'
-alias gf='git ls-files | grep -i'
-alias gs='git status -sb'
-alias gm='git commit -m'
-alias gc='git checkout'
+alias glog="git log"
+alias gllog="git log origin/master..HEAD"  # local commit log
+alias gg="git grep -i"
+alias gf="git ls-files | grep -i"
+alias gs="git status -sb"
+alias gm="git commit -m"
+alias gc="git checkout"
+# List files in commit. "glist head" "glist <hash>"
+alias glist="git diff-tree --no-commit-id --name-only -r"
+# List unstaged files
+alias glistdiff="git diff --name-status"
+# Checks out master at a given time (merge time, not commit message's time). Usage:
+# gtimetravel "Jan 11 2015, 5:00PM" or gtimetravel "Jan 11 2015"
+gtimetravelFn() {
+  git checkout `git rev-list -1 --before="$1" master`
+}
+alias gtimetravel=gtimetravelFn
+# Perform any adb command on all connected devices. "adball install asdf.apk"
+alias adball="adb devices | tail -n +2 | cut -sf 1 | xargs -I {} adb -s {} "
+# Run an adb command on an emulator only. Useful if charging personal device on the same computer.
+alias adbe="adb -e"
+# Run an adb command on a device only.
+alias adbd="adb -d"
+
