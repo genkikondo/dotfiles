@@ -50,6 +50,12 @@ bind J resize-pane -D 5
 bind K resize-pane -U 5
 bind L resize-pane -R 5
 
+# -------------
+# Mouse support
+# Note: in iTerm 2, hold option to temporarily disable mouse mode to select/copy
+# -------------
+set-option -g mouse on
+
 # ---------------------
 # Colors
 # ---------------------
