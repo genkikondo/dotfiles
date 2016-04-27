@@ -119,11 +119,11 @@ set whichwrap+=<,>,h,l
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases 
+" Make search case sensitive if query contains uppercase 
 set smartcase
 
-" Highlight search results
-set hlsearch
+" Don't persist highlighting of search results
+set nohlsearch
 
 " Makes search act like search in modern browsers
 set incsearch
@@ -169,9 +169,9 @@ set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-" Set column color at 101
-set colorcolumn=101
-highlight ColorColumn ctermbg=DarkGrey
+" Set column color
+set colorcolumn=81,101
+highlight ColorColumn ctermbg=233
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -287,6 +287,9 @@ autocmd BufReadPost *
       \ endif
 " Remember info about open buffers on close
 set viminfo^=%
+
+set scrolljump=5
+set sidescroll=10
 
 
 """"""""""""""""""""""""""""""
