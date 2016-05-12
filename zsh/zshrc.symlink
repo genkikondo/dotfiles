@@ -23,6 +23,10 @@ ZSH_THEME="simple"
 # Uncomment the following line to disable auto-setting terminal title.
 DISABLE_AUTO_TITLE="true"
 
+# Save more history
+HISTSIZE=130000
+SAVEHIST=130000
+
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
 
