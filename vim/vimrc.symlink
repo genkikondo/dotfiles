@@ -30,7 +30,7 @@
 " Instructions:
 "   Install Vundle
 "     git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-"   Open vim, then :BundleInstall
+"   Open vim, then :PluginInstall
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -56,6 +56,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'bling/vim-airline'
 
 " Required. All Plugins must be added before the following line
 call vundle#end()
