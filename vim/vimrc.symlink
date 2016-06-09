@@ -57,6 +57,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'bling/vim-airline'
+Plugin 'sjl/splice.vim'
 
 " Required. All Plugins must be added before the following line
 call vundle#end()
