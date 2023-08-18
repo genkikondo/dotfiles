@@ -9,7 +9,7 @@
 "   http://amix.dk - amix@amix.dk
 "
 " Sections:
-"   -> Vundle
+"   -> Plugins
 "   -> General
 "   -> VIM user interface
 "   -> Colors and Fonts
@@ -22,45 +22,42 @@
 "   -> vimgrep searching and cope displaying
 "   -> Spell checking
 "   -> NERDTree
-"   -> CtrlP
-"   -> Eclim
 "   -> Misc
 "   -> Helper functions
 "
 " Instructions:
-"   Install Vundle
-"     git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 "   Open vim, then :PluginInstall
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vundle
+" => Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Don't try to be vi compatible
 set nocompatible
+
+" Helps force plugins to load correctly when turned back on below
 filetype off
 
-" Set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" Let Vundle manage itself
-Plugin 'gmarik/Vundle.vim'
+" Automatic installation of vim-plug
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 " Plugins
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-" Plugin 'Valloric/YouCompleteMe'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'bling/vim-airline'
-Plugin 'sjl/splice.vim'
+call plug#begin()
 
-" Required. All Plugins must be added before the following line
-call vundle#end()
+Plug 'altercation/vim-colors-solarized'
+Plug 'preservim/nerdtree'
+Plug 'bling/vim-airline'
+Plug 'junegunn/fzf'
+Plug 'tpope/vim-fugitive'
+
+" Initialize plugin system. All plugins must be added before the following line
+call plug#end()
 filetype plugin indent on
 
 
@@ -69,10 +66,6 @@ filetype plugin indent on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
 set history=500
-
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -97,7 +90,10 @@ set mouse=a
 set so=7
 
 " Default to line numbers on
-set nu
+set number
+
+" Always show current position
+set ruler
 
 " Avoid garbled characters in Chinese language windows OS
 let $LANG='en' 
@@ -115,9 +111,6 @@ if has("win16") || has("win32")
 else
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 endif
-
-"Always show current position
-set ruler
 
 " Height of the command bar
 set cmdheight=1
@@ -173,7 +166,7 @@ set foldcolumn=1
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
-syntax enable
+syntax on
 
 set background=dark
 let g:solarized_termcolors = 256
@@ -187,8 +180,8 @@ if has("gui_running")
   set guitablabel=%M\ %t
 endif
 
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
+" Set UTF-8 as standard encoding and en_US as the standard language
+set encoding=utf-8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
@@ -424,28 +417,6 @@ map <leader>f :NERDTreeFind<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => CtrlP
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>o :CtrlP .<CR>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Eclim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:EclimCompletionMethod = 'omnifunc'
-nmap <C-J>i :JavaImport<CR>
-nmap <C-J>o :JavaImportOrganize<CR>
-nmap <C-J>h :JavaHierarchy<CR>
-nmap <C-J>c :JavaCallHierarchy<CR>
-nmap <C-J>y :JavaFormat<CR>
-nmap <C-]> :JavaSearchContext<CR>
-nmap <C-J>v :Validate<CR>
-nmap <leader>l :LocateFile<CR>
-
-command -nargs=* LF LocateFile <args>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remove the Windows ^M - when the encodings gets messed up
@@ -468,6 +439,7 @@ if &term =~ '^screen'
   execute "set <xRight>=\e[1;*C"
   execute "set <xLeft>=\e[1;*D"
 endif
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
