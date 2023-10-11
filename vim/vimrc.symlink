@@ -26,7 +26,8 @@
 "   -> Helper functions
 "
 " Instructions:
-"   Open vim, then :PluginInstall
+"   Install vim-plug
+"   Open vim, then :PlugInstall
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
